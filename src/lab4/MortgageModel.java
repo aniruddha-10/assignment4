@@ -35,53 +35,43 @@ public class MortgageModel
         this.numPayments = numPayments;
     }
 
+    private double calculateInterestFactor() {
+        double c = 2; // compounding frequency per year (semi-annually)
+        double f = 12; // frequency of payments per year (monthly)
+        double r = interestRate; // annual interest rate
+        return (Math.pow((r/c + 1) , c / f) - 1);
+    }
     public double calculateMonthlyPayment() {
         double i = calculateInterestFactor();
-        double B = (principal * i) / (1 - Math.pow(1 + i, -numPayments));
-        return B;
+        return (principal * i) / (1 - Math.pow(1 + i, -numPayments));
+    }
+    public double calculateTotalPayments() {
+        double monthlyPayment = calculateMonthlyPayment();
+        return monthlyPayment * numPayments;
     }
 
     public double calculateTotalInterestPaid() {
-        double totalInterest = calculateTotalPayments() - principal;
-        return totalInterest;
-    }
-
-    public double calculateTotalPayments() {
-        double monthlyPayment = calculateMonthlyPayment();
-        double totalPayments = monthlyPayment * numPayments;
-        return totalPayments;
+        return calculateTotalPayments() - principal;
     }
 
     public double calculateInterestPrincipalRatio() {
         double totalInterest = calculateTotalInterestPaid();
-        double ratio = totalInterest / principal;
-        return ratio;
+        return totalInterest / principal;
     }
 
     public double calculateAverageInterestPerYear() {
         double totalInterest = calculateTotalInterestPaid();
         double years = numPayments / 12.0;
-        double averageInterestPerYear = totalInterest / years;
-        return averageInterestPerYear;
+        return totalInterest / years;
     }
 
     public double calculateAverageInterestPerMonth() {
         double totalInterest = calculateTotalInterestPaid();
-        double averageInterestPerMonth = totalInterest / numPayments;
-        return averageInterestPerMonth;
+        return totalInterest / numPayments;
     }
 
     public double calculateAmortizationInYears() {
-        double years = numPayments / 12.0;
-        return years;
-    }
-
-    private double calculateInterestFactor() {
-        double c = 2; // compounding frequency per year (semi-annually)
-        double f = 12; // frequency of payments per year (monthly)
-        double r = interestRate; // annual interest rate
-        double i = (r / c + 1) * Math.pow(c / f, 1 / c) - 1;
-        return i;
+        return numPayments / 12.0;
     }
 
 }

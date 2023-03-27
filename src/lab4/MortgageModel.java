@@ -5,7 +5,7 @@ public class MortgageModel
     private double interestRate;
     private int numPayments;
 
-    public MortgageModel(double principal, double interestRate, int numPayments) {
+    public MortgageModel() {
         this.principal = principal;
         this.interestRate = interestRate;
         this.numPayments = numPayments;
@@ -58,6 +58,10 @@ public class MortgageModel
         double totalInterest = calculateTotalInterestPaid();
         return totalInterest / principal;
     }
+    public double calculateTotalInterestandPrincipal()
+    {
+        return calculateTotalPayments();
+    }
 
     public double calculateAverageInterestPerYear() {
         double totalInterest = calculateTotalInterestPaid();
@@ -70,8 +74,8 @@ public class MortgageModel
         return totalInterest / numPayments;
     }
 
-    public double calculateAmortizationInYears() {
-        return numPayments / 12.0;
+    public int calculateAmortizationInYears() {
+        return numPayments / 12;
     }
 
 }

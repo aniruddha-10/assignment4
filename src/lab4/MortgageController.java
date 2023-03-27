@@ -13,6 +13,7 @@ public class MortgageController
         this.view = view;
         this.model = model;
         this.view.addCalculateListener(new addCalculateListener());
+        this.view.addClearListener(new addClearListener());
     }
 
     class addCalculateListener implements ActionListener
@@ -34,6 +35,13 @@ public class MortgageController
             view.setAvgIntpermonth(model.calculateAverageInterestPerMonth());
             view.setAvgIntperyear(model.calculateAverageInterestPerYear());
             view.setPayments(model.calculateAmortizationInYears());
+        }
+    }
+    class addClearListener implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            view.clearing();
         }
     }
     public static void main(String[] args)

@@ -22,6 +22,8 @@ public class MortgageCalculatorView extends JFrame
     // Instance Variable for the button
     private JButton button;
 
+    private JButton clearButton;
+
     public  MortgageCalculatorView()
     {
         super();
@@ -29,7 +31,7 @@ public class MortgageCalculatorView extends JFrame
         JFrame frame = new JFrame();
         JPanel panel = new JPanel();
         frame.setTitle("Mortgage Calculator");
-        frame.setSize(500, 400);
+        frame.setSize(350, 400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(panel);
         panel.setLayout(null);
@@ -41,8 +43,6 @@ public class MortgageCalculatorView extends JFrame
         inputprincipalAmt = new JTextField(10);
         inputprincipalAmt.setBounds(130, 20, 160, 25);
         panel.add(inputprincipalAmt);
-
-
 
         // To make the Interest Rate label visible on the screen
         JLabel label1 = new JLabel("Interest Rate");
@@ -62,8 +62,12 @@ public class MortgageCalculatorView extends JFrame
 
         // To make the calculate button visible on the screen
         button = new JButton("Calculate");
-        button.setBounds(145, 135, 100, 25);
+        button.setBounds(80, 135, 100, 25);
         panel.add(button);
+
+        clearButton = new JButton("Clear");
+        clearButton.setBounds(200,135,100,25);
+        panel.add(clearButton);
 
         // To make the output labels visible
         BlendedPayment = new JLabel("Blended Payment: ");
@@ -110,38 +114,53 @@ public class MortgageCalculatorView extends JFrame
     }
     public void setBlendedPayment(double payment)
     {
-        BlendedPayment.setText("Blended Payment: " + payment);
+        BlendedPayment.setText(String.format("Blended Payment: %.2f ",payment));
     }
     public void setTotalInterest(double interest)
     {
-        totalInterest.setText("Total Interest Paid: " + interest);
+        totalInterest.setText(String.format("Total Interest Paid: %.2f ", interest));
     }
 
     public void setTotalInterestandPrincipal(double total)
     {
-        totalInterestandPrincipal.setText("Total Interest and Principal: " + total);
+        totalInterestandPrincipal.setText(String.format("Total Interest and Principal: %.2f", total));
     }
     public void setInterestPrincipalRatio(double ratio)
     {
-        interestPrincipalRatio.setText("Interest/Principal Ratio: " + ratio);
+        interestPrincipalRatio.setText(String.format("Interest/Principal Ratio: %.2f",ratio));
     }
 
     public void setAvgIntperyear(double peryear)
     {
-        avgIntperyear.setText("Average Interest per year: " + peryear);
+        avgIntperyear.setText(String.format("Average Interest per year: %.2f",peryear));
     }
 
     public void setAvgIntpermonth(double permonth)
     {
-        avgIntpermonth.setText("Average Interest per month: " + permonth);
+        avgIntpermonth.setText(String.format("Average Interest per month: %.2f",permonth));
     }
 
-    public void setPayments(int number)
+    public void setPayments(double number)
     {
         payments.setText("Ammortization expressed in years: " + number);
     }
     public void addCalculateListener(ActionListener listener)
     {
         button.addActionListener(listener);
+    }
+    public void clearing()
+    {
+        BlendedPayment.setText("Blended Payment: ");
+        totalInterest.setText("Total Interest Paid: ");
+        totalInterestandPrincipal.setText("Total Interest and Principal: ");
+        interestPrincipalRatio.setText("Interest/Principal Ratio: ");
+        avgIntpermonth.setText("Average Interest per month: ");
+        avgIntperyear.setText("Average Interest per year: ");
+        payments.setText("Ammortization expressed in years: ");
+
+    }
+    public void addClearListener(ActionListener listener)
+    {
+        clearButton.addActionListener(listener);
     }
 }

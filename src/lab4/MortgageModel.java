@@ -3,7 +3,7 @@ public class MortgageModel
 {
     private double principal;
     private double interestRate;
-    private int numPayments;
+    private double numPayments;
 
     public MortgageModel() {
         this.principal = principal;
@@ -27,7 +27,7 @@ public class MortgageModel
         this.interestRate = interestRate;
     }
 
-    public int getNumPayments() {
+    public double getNumPayments() {
         return numPayments;
     }
 
@@ -74,7 +74,7 @@ public class MortgageModel
         return totalInterest / numPayments;
     }
 
-    public int calculateAmortizationInYears() {
+    public double calculateAmortizationInYears() {
         return numPayments / 12;
     }
 

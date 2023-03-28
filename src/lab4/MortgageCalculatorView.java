@@ -19,11 +19,15 @@ public class MortgageCalculatorView extends JFrame
     private JLabel payments;
     private JLabel totalInterestandPrincipal;
 
-    // Instance Variable for the button
+    // Instance Variable for the calculate button
     private JButton button;
 
+    // Instance variable for the clear button
     private JButton clearButton;
 
+    /**
+     * Constructor that calls the superclass methods and access the superclass and then formulates the view of the GUI
+     */
     public  MortgageCalculatorView()
     {
         super();
@@ -36,10 +40,12 @@ public class MortgageCalculatorView extends JFrame
         frame.add(panel);
         panel.setLayout(null);
 
-        // TO make the Principal Label visible on the screen
+        // To make the Principal Label visible on the screen
         JLabel label = new JLabel("Principal Amount ");
         label.setBounds(10, 20, 150, 25);
         panel.add(label);
+
+        // To make the textfield for the principal visible on the screen
         inputprincipalAmt = new JTextField(10);
         inputprincipalAmt.setBounds(130, 20, 160, 25);
         panel.add(inputprincipalAmt);
@@ -48,14 +54,18 @@ public class MortgageCalculatorView extends JFrame
         JLabel label1 = new JLabel("Interest Rate");
         label1.setBounds(10, 60, 150, 25);
         panel.add(label1);
+
+        // To make the textfield for the interest rate visible on the screen
         inputInterest = new JTextField(10);
         inputInterest.setBounds(120, 60, 160, 25);
         panel.add(inputInterest);
 
-        // To make the Ammortization Label visible on the screen
-        JLabel label2 = new JLabel("Ammortization(in months)");
+        // To make the Amortization Label visible on the screen
+        JLabel label2 = new JLabel("Amortization(in months)");
         label2.setBounds(10, 100, 250, 25);
         panel.add(label2);
+
+        // To make the textfield for the amortization visible on the screen
         inputpayments = new JTextField(10);
         inputpayments.setBounds(180, 100, 160, 25);
         panel.add(inputpayments);
@@ -65,6 +75,7 @@ public class MortgageCalculatorView extends JFrame
         button.setBounds(80, 135, 100, 25);
         panel.add(button);
 
+        // To make the clear button visible on the screen
         clearButton = new JButton("Clear");
         clearButton.setBounds(200,135,100,25);
         panel.add(clearButton);
@@ -94,60 +105,115 @@ public class MortgageCalculatorView extends JFrame
         avgIntpermonth.setBounds(10, 310, 300, 25);
         panel.add(avgIntpermonth);
 
-        payments = new JLabel("Ammortization expressed in years: ");
+        payments = new JLabel("Amortization expressed in years: ");
         payments.setBounds(10, 340, 300, 25);
         panel.add(payments);
 
         frame.setVisible(true);
     }
+
+    /**
+     * Method to get the value of the Principal amount
+     * @return value of the principal amount
+     */
     public int getPrincipalvalue()
     {
         return Integer.parseInt(inputprincipalAmt.getText());
     }
+
+    /**
+     * Method to get the value of the Interest rate
+     * @return value of the interest rate
+     */
     public double getInterestRate()
     {
         return Double.parseDouble(inputInterest.getText());
     }
+
+    /**
+     * Method to get the value of the amortization in terms of months
+     * @return value of amortization in terms of months
+     */
     public int getNumberOfPayments()
     {
         return Integer.parseInt(inputpayments.getText());
     }
+
+    /**
+     * Method to set the Blended payment label text with the value
+     * @param payment receives the value of the blended payment to be displayed on the screen
+     */
     public void setBlendedPayment(double payment)
     {
         BlendedPayment.setText(String.format("Blended Payment: %.2f ",payment));
     }
+
+    /**
+     * Method to set the Total interest paid label text with the value
+     * @param interest receives the value of the Total interest paid to be displayed on the screen
+     */
     public void setTotalInterest(double interest)
     {
         totalInterest.setText(String.format("Total Interest Paid: %.2f ", interest));
     }
 
+    /**
+     * Method to set the Total Interest and Principal label text with the value
+     * @param total receives the value of the Total interest and principal to be displayed on the screen
+     */
     public void setTotalInterestandPrincipal(double total)
     {
         totalInterestandPrincipal.setText(String.format("Total Interest and Principal: %.2f", total));
     }
+
+    /**
+     * Method to set the InterestPrincipal ratio label text with the value
+     * @param ratio receives the value of the interest principal ratio
+     */
     public void setInterestPrincipalRatio(double ratio)
     {
         interestPrincipalRatio.setText(String.format("Interest/Principal Ratio: %.2f",ratio));
     }
 
+    /**
+     * Method to set the Average Interest per year label text with the value
+     * @param peryear receives the value of the Average interest per year
+     */
     public void setAvgIntperyear(double peryear)
     {
         avgIntperyear.setText(String.format("Average Interest per year: %.2f",peryear));
     }
 
+    /**
+     * Method to set the Average Interest per month label text with the value
+     * @param permonth receives the value of the Average interest per month
+     */
     public void setAvgIntpermonth(double permonth)
     {
         avgIntpermonth.setText(String.format("Average Interest per month: %.2f",permonth));
     }
 
+    /**
+     * Method to set the Amortization expressed in years label text with the value
+     * @param number receives an integer value of amortization in terms of years
+     */
     public void setPayments(double number)
     {
         payments.setText("Ammortization expressed in years: " + number);
     }
+
+    /**
+     * Method to implement the action when the button is pressed
+     * @param listener parameter that receives the action when the button is pressed
+     */
     public void addCalculateListener(ActionListener listener)
     {
         button.addActionListener(listener);
     }
+
+    /**
+     * Method to clear the screen
+     */
     public void clearing()
     {
         BlendedPayment.setText("Blended Payment: ");
@@ -156,9 +222,13 @@ public class MortgageCalculatorView extends JFrame
         interestPrincipalRatio.setText("Interest/Principal Ratio: ");
         avgIntpermonth.setText("Average Interest per month: ");
         avgIntperyear.setText("Average Interest per year: ");
-        payments.setText("Ammortization expressed in years: ");
-
+        payments.setText("Amortization expressed in years: ");
     }
+
+    /**
+     * Method to implement the clear screen action when the user presses the clear button
+     * @param listener parameter that receives the action when the button is pressed.
+     */
     public void addClearListener(ActionListener listener)
     {
         clearButton.addActionListener(listener);

@@ -62,7 +62,6 @@ public class MortgageModel
     public void setNumPayments(int numPayments) {
         this.numPayments = numPayments;
     }
-
     /**
      * Method for calculating the interest factor
      * @return value of the interest factor

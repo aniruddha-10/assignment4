@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"lab4","l":"MortgageCalculatorView"},{"p":"lab4","l":"MortgageController"},{"p":"lab4","l":"MortgageModel"}];updateSearchResults();
